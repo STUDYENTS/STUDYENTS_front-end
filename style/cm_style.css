@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.lessons-bar {
+    width: 20%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    transition: width 0.3s;
+}
+
+.lessons-bar.collapsed {
+    display: none;
+}
+
+
+.lessons-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lessons-bar li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.lessons-bar li:hover {
+    background-color: #e0e0e0;
+}
+
+.main-content {
+    width: 80%;
+    padding-top: 0px;
+    padding-left: 20px;;
+    transition: width 0.3s;
+}
+
+.main-content.expanded {
+    width: 100%;
+}
+
+video {
+    width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tests {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tests h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tests p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.additional-text {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: left;
+}
+.navbar a {
+    color: black;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 20px; 
+    text-decoration: none; 
+    letter-spacing: 1px; 
+    text-transform: uppercase;
+}
+
+.navbar a:hover {
+    color: #ddd; 
+}
+
