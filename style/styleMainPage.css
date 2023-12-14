@@ -31,19 +31,6 @@ body {
     font-size: 20px;
 }
 
-.menu-items {
-    position: fixed;
-    width: 100%;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.menu-items img {
-    width: 4%;
-    margin: 0 10px;
-}
 
 .menu-item {
     color: black;

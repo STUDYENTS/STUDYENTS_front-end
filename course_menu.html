@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="cm_style.css">
+    <link rel="stylesheet" href="style/cm_style.css">
     <title>Образовательная платформа</title>
     
 </head>
 <body>
     <div class="navbar">
         <a href="#">STUDYENTS</a>
+        <img id="navbar-image" src="image/user_cirkle.png" alt="Описание изображения">
     </div>
+   
+
     <div class="container">
-        <button id="toggle-button">Свернуть</button>
-        <div class="lessons-bar">
+               <div class="lessons-bar">
             <ul id="coctails">
                 <li><a href="#">Урок 1</a></li>
             </ul>
         </div>
+        <button id="toggle-button"></button>
         <div class="main-content">
+            <h1 id="lesson-title">Название урока</h1>
             <video controls>
                 <source src="lesson1.mp4" type="video/mp4">
                 Ваш браузер не поддерживает видео.
@@ -55,6 +59,6 @@
             </div>
         </div>
     </div>
-    <script src="button.js"></script>
+    <script src="script/button.js"></script>
 </body>
 </html>

@@ -7,19 +7,45 @@ body {
     background-color: #fff;
 }
 
+#lesson-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#toggle-button {
+    background-color: #FFEBCD;
+    border: none;
+    transition: left 0.3;
+    cursor: pointer;
+}
+
+.menu-items {
+    position: fixed;
+    width: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-items img {
+    width: 4%;
+    margin: 0 10px;
+}
+
 .container {
     display: flex;
-    justify-content: space-between;
-    width: 80%;
+    justify-content: space-around;
     margin: 0 auto;
-    padding: 20px;
+    padding-top: 0;
 }
 
 .lessons-bar {
     width: 20%;
-    background-color: #f0f0f0;
+    background-color: white;
     padding: 20px;
-    border-right: 1px solid #ccc;
+    border: none;
     transition: width 0.3s;
 }
 
@@ -37,10 +63,6 @@ body {
     margin-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.lessons-bar li:hover {
-    background-color: #e0e0e0;
 }
 
 .main-content {
@@ -89,10 +111,19 @@ video {
 }
 
 .navbar {
-    background-color: #f0f0f0;
+    background-color: #FFEBCD;
     padding: 20px;
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+#navbar-image {
+    height: 50px;
+}
+
+
 .navbar a {
     color: black;
     font-family: 'Roboto', sans-serif; 
