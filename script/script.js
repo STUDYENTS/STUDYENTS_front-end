@@ -1,16 +1,16 @@
 var data = [
-    {
-        title: "Курс по Web-программированию для начинающих",
-        image: "image/curse_img.jpg",
-        tests: "10",
-        tasks: "20",
-        skillPer: "49"
-    }
+  {
+    title: "Курс по Web-программированию для начинающих",
+    image: "image/curse_img.jpg",
+    tests: "10",
+    tasks: "20",
+    skillPer: "49"
+  }
 ];
 
 let item = data[0];
 for (let i = 0; i < 20; i++) {
-    data.push(item);
+  data.push(item);
 }
 
 async function GetCourse() {
@@ -35,8 +35,8 @@ async function GetCourse() {
 
 // Функция для создания HTML-кода для элемента данных
 function createContentItem(data) {
-    return `
-    <div class="content-item">
+  return `
+    <a class="content-item" href="CursePage.html" >
       <div>
         <img src="${data.image}">
         <h3>${data.title}</h3>
@@ -53,7 +53,8 @@ function createContentItem(data) {
           </div>
         </div>
       </div>
-    </div>
+    </a>
+   
   `;
 }
 
