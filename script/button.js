@@ -18,11 +18,9 @@ toggleButton.addEventListener('click', function () {
     if (lessonsBar.classList.contains('collapsed')) {
         lessonsBar.classList.remove('collapsed');
         mainContent.classList.remove('expanded');
-        toggleButton.textContent = 'Свернуть';
     } else {
         lessonsBar.classList.add('collapsed');
         mainContent.classList.add('expanded');
-        toggleButton.textContent = 'Развернуть';
     }
 });
 
@@ -30,11 +28,11 @@ toggleButton.addEventListener('click', function () {
     if (lessonsBar.style.display === "none") {
         lessonsBar.style.display = "block";
         mainContent.style.width = "80%";
-        toggleButton.textContent = 'Свернуть';
+        toggleButton.style.left = "20%";
     } else {
         lessonsBar.style.display = "none";
         mainContent.style.width = "100%";
-        toggleButton.textContent = 'Развернуть';
+        toggleButton.style.left = "0%";
     }
 });
 
