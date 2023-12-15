@@ -17,17 +17,19 @@
 
     <div class="container">
                <div class="lessons-bar">
-            <ul id="coctails">
-                <li><a href="#">Урок 1</a></li>
+            <ul id="lessons">
+			
             </ul>
         </div>
         <button id="toggle-button"></button>
         <div class="main-content">
             <h1 id="lesson-title">Название урока</h1>
-            <video controls>
-                <source src="lesson1.mp4" type="video/mp4">
+            <video id="video" class="video-js" controls preload="auto" width="640" height="264">
+                <source src="" type="video/mp4" />
                 Ваш браузер не поддерживает видео.
             </video>
+
+
             <div class="additional-text">
                 <p>Дополнительная информация о текущем уроке или задания для студентов.</p>
                 <!-- Поле для прикрепления текстовых файлов -->

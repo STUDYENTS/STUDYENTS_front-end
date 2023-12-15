@@ -1,18 +1,8 @@
-var lessonLinks = document.querySelectorAll('.lesson-link');
-var ListCoctails = document.getElementById('coctails');
-var toggleButton = document.getElementById('toggle-button');
-var lessonsBar = document.querySelector('.lessons-bar');
-var mainContent = document.querySelector('.main-content');
-
-for (var i = 0; i < lessonLinks.length; i++) {
-    lessonLinks[i].addEventListener('click', function (e) {
-        e.preventDefault();
-        var videoUrl = this.getAttribute('data-video-url');
-        var videoPlayer = document.querySelector('.video-player');
-        videoPlayer.src = videoUrl;
-        videoPlayer.play();
-    });
-}
+let lessonsList = document.getElementById('lessons');
+let toggleButton = document.getElementById('toggle-button');
+let lessonsBar = document.querySelector('.lessons-bar');
+let mainContent = document.querySelector('.main-content');
+let lessonTitle = document.getElementById('lesson-title');
 
 toggleButton.addEventListener('click', function () {
     if (lessonsBar.classList.contains('collapsed')) {
@@ -36,22 +26,42 @@ toggleButton.addEventListener('click', function () {
     }
 });
 
-var lessonCheck = true;
+async function changeLesson(lessonId) {
+    try {
+        const sourceLesson = 'http://127.0.0.1:8000/lessons/' + lessonId;
+        const res = await fetch(sourceLesson);
+
+        if (!res.ok) {
+            console.error('Failed to fetch lesson:', res.status, res.statusText);
+            return;
+        }
+
+        const lesson = await res.json();
+        lessonTitle.innerText = lesson.title;
+
+        const video = document.getElementById('video');
+        video.src = "http://127.0.0.1:8000/video/%D0%B4%D1%80_%D0%BC%D0%B0%D0%BC%D0%B0.mp4";
+        video.load();
+        video.play();
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
+
 
 window.addEventListener('load', async function () {
-   if (lessonCheck === true) {
-      lessonCheck=false;
         const res = await fetch('http://127.0.0.1:8000/lessons/');
-        const ListCoctail = await res.json();
-        ListCoctail.map((item) => {
+        console.log('re',res)
+        const lessonList = await res.json();
+		lessonList.sort(function(a, b) { return a.id - b.id;});
+        lessonList.map((item) => {
             var newListItem = document.createElement('li');
-            var newListItemA = document.createElement('a');
-            newListItemA.href = '#';
+            var newListItemA = document.createElement('div');
+			newListItemA.id = item.id;
+			newListItemA.setAttribute('onclick', 'changeLesson(' + item.id + ')');
             newListItemA.textContent = item.title;
             newListItem.appendChild(newListItemA);
-            ListCoctails.appendChild(newListItem);
-
+            lessonsList.appendChild(newListItem);
         })
-    }
-
+		changeLesson(lessonList[0].id);
 })
