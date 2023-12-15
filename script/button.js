@@ -105,6 +105,9 @@ window.addEventListener('load', async function () {
             var newListItemA = document.createElement('div');
 			newListItemA.id = item.id;
 			newListItemA.setAttribute('onclick', 'changeLesson(' + item.id + ')');
+            var newListItemA = document.createElement('div');
+			newListItemA.id = item.id;
+			newListItemA.setAttribute('onclick', 'changeLesson(' + item.id + ')');
             newListItemA.textContent = item.title;
             newListItem.appendChild(newListItemA);
             lessonsList.appendChild(newListItem);

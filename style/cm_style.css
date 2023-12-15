@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     margin: 0;
     padding: 0;
     background-color: #fff;
@@ -18,6 +18,10 @@ body {
     border: none;
     transition: left 0.3;
     cursor: pointer;
+}
+
+#toggle-button:hover {
+    background: #DEB887;    
 }
 
 .menu-items {
@@ -126,11 +130,10 @@ video {
 
 .navbar a {
     color: black;
-    font-family: 'Roboto', sans-serif; 
-    font-size: 20px; 
-    text-decoration: none; 
-    letter-spacing: 1px; 
-    text-transform: uppercase;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 20px;
+    text-decoration: none;
+    letter-spacing: 1px;
 }
 
 .navbar a:hover {
