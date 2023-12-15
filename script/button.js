@@ -1,5 +1,5 @@
 var lessonLinks = document.querySelectorAll('.lesson-link');
-var ListCoctails = document.getElementById('coctails')
+var ListCoctails = document.getElementById('coctails');
 var toggleButton = document.getElementById('toggle-button');
 var lessonsBar = document.querySelector('.lessons-bar');
 var mainContent = document.querySelector('.main-content');
@@ -38,22 +38,20 @@ toggleButton.addEventListener('click', function () {
 
 var lessonCheck = true;
 
-toggleButton.addEventListener('click', async function () {
-    if (lessonCheck === true) {
-        lessonCheck=false;
-        const res = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita');
+window.addEventListener('load', async function () {
+   if (lessonCheck === true) {
+      lessonCheck=false;
+        const res = await fetch('http://127.0.0.1:8000/lessons/');
         const ListCoctail = await res.json();
-        console.log('12', ListCoctail.drinks)
-        ListCoctail.drinks.map((item) => {
+        ListCoctail.map((item) => {
             var newListItem = document.createElement('li');
             var newListItemA = document.createElement('a');
             newListItemA.href = '#';
-            newListItemA.textContent = item.strDrink;
+            newListItemA.textContent = item.title;
             newListItem.appendChild(newListItemA);
             ListCoctails.appendChild(newListItem);
 
         })
     }
-
 
 })
