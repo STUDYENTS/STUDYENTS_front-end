@@ -42,8 +42,12 @@ body {
     align-items: left;
     width: 15%;
     height: 100vh;
+    z-index: 200;
     position: fixed;
-    transform: translateX(0);
+    top: 0;
+    padding-top: 100px;
+    margin-top: 0;
+    transform: translateX(-100%);
     transition: transform 0.5s ease-out;
     border-right: #FFEBCD solid 4px;
 }
@@ -73,12 +77,12 @@ body {
 }
 
 .hidden {
-    transform: translateX(-100%);
+    transform: translateX(0);
 }
 
 #toggleButton {
     position: fixed;
-    left: 0;
+    left: 15%;
     top: 50%;
     transform: translateY(-50%);
     background-color: #FFEBCD;
@@ -92,15 +96,15 @@ body {
 }
 
 #toggleButton::after {
-    content: '>';
+    content: '<';
 }
 
 #toggleButton.hidden {
-    left: 15%;
+    left: 0;
 }
 
 #toggleButton.hidden::after {
-    content: '<';
+    content: '>';
 }
 
 .content {
