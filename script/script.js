@@ -1,3 +1,13 @@
+var data = [
+  {
+    title: "Курс по Web-программированию для начинающих",
+    image: "image/curse_img.jpg",
+    tests: "10",
+    tasks: "20",
+    skillPer: "49"
+  }
+];
+
 let item = data[0];
 for (let i = 0; i < 20; i++) {
   data.push(item);
@@ -6,14 +16,14 @@ for (let i = 0; i < 20; i++) {
 // Функция для создания HTML-кода для элемента данных
 function createContentItem(data) {
   return `
-    <div class="content-item">
+    <a class="content-item" href="CursePage.html" >
       <div>
         <img src="${data.image}">
         <h3>${data.title}</h3>
       </div>
       <div>
-        <p class="test">Кол-во уроков: ${data.lessons}</p>
-        <p class="task">Кол-во тестов: ${data.tests}</p>
+        <p class="test">Кол-во тестов: ${data.tests}</p>
+        <p class="task">Кол-во заданий: ${data.tasks}</p>
       </div>
       <div class="skill-main">
         <div class="skill-wrrap">
@@ -23,7 +33,8 @@ function createContentItem(data) {
           </div>
         </div>
       </div>
-    </div>
+    </a>
+   
   `;
 }
 
@@ -73,26 +84,3 @@ document.getElementById('toggleButton').addEventListener('click', function() {
   topic.classList.toggle('hidden');
   button.classList.toggle('hidden');
 });
-
-window.addEventListener('load', async function () {
-        const res = await fetch('http://127.0.0.1:8000/courses/');
-        const CoursesList = await res.json();
-		const res = await fetch('http://127.0.0.1:8000/lessons/');
-        const LessonsList = await res.json();
-		const res = await fetch('http://127.0.0.1:8000/tests/');
-        const TestsList = await res.json();
-		let data = 
-		  {
-			title: null,
-			image: 'image/curse_img.jpg',
-			lessons: null,
-			tests: null,
-			skillPer: '49'
-		  };
-		
-        CoursesList.map((item) => {
-			data.title = item.title;
-			data.lessons = 
-
-        })
-})

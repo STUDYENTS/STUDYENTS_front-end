@@ -74,9 +74,10 @@ data.modules.forEach(module => {
 
     // Добавляем уроки
     module.lessons.forEach(lesson => {
-        let lessonBox = document.createElement('div');
+        let lessonBox = document.createElement('a');
         lessonBox.className = 'lesson-box';
         lessonBox.textContent = lesson;
+        lessonBox.href="course_menu.html"
         containerItem.appendChild(lessonBox);
     });
 

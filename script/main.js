@@ -216,20 +216,6 @@ jQuery(document).ready(function($) {
 	};
 	siteStellar();
 
-	// var windowScroll = function() {
-
- //    $(window).scroll(function(){
- //      var $win = $(window);
- //      if ($win.scrollTop() > 200) {
- //        $('.js-site-header').addClass('scrolled');
- //      } else {
- //        $('.js-site-header').removeClass('scrolled');
- //      }
-
- //    });
-
- //  };
- //  windowScroll();
 
 	var siteCountDown = function() {
 
@@ -317,14 +303,8 @@ jQuery(document).ready(function($) {
 
     });
 
-    // $("#menu li a[href^='#']").on('click', function(e){
-    //   e.preventDefault();
-    //   navToggler.trigger('click');
-    // });
 
     $('body').on('activate.bs.scrollspy', function () {
-      // console.log('nice');
-      // alert('yay');
     })
   };
   OnePageNavigation();

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .navbar {
@@ -19,11 +19,10 @@ body {
 
 .navbar a {
     color: black;
-    font-family: 'Roboto', sans-serif; 
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 20px; 
     text-decoration: none; 
     letter-spacing: 1px; 
-    text-transform: uppercase;
 }
 
 .navbar a:hover {
@@ -47,9 +46,10 @@ body {
     top: 0;
     padding-top: 100px;
     margin-top: 0;
-    transform: translateX(-100%);
+    transform: translateX(0);
     transition: transform 0.5s ease-out;
     border-right: #FFEBCD solid 4px;
+    background-color: white;
 }
 
 .topic a {
@@ -77,12 +77,12 @@ body {
 }
 
 .hidden {
-    transform: translateX(0);
+    transform: translateX(-100%);
 }
 
 #toggleButton {
     position: fixed;
-    left: 15%;
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     background-color: #FFEBCD;
@@ -96,15 +96,15 @@ body {
 }
 
 #toggleButton::after {
-    content: '<';
+    content: '>';
 }
 
 #toggleButton.hidden {
-    left: 0;
+    left: 15%;
 }
 
 #toggleButton.hidden::after {
-    content: '>';
+    content: '<';
 }
 
 .content {
