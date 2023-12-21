@@ -117,13 +117,15 @@ body {
 }
 
 .content-item img {
-    width: 22%;
-    height: 15vh;
+    width: 8vw;
+    height: 8vw;
     align-self: left;
     margin: 0;
+    
 }
 
 .content-item {
+    text-decoration: none;
     width: 45%;
     height: 35vh;
     padding: 20px;
@@ -139,12 +141,12 @@ body {
 
 .content-item>div:first-child {
     display: flex;
-    align-items: center;
-    justify-content: center;
+   
     width: 100%;
 }
 
 .content h3 {
+    width: 70%;
     font-size: 20px;
     color: #212529;
     text-align: center;
