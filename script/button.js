@@ -28,7 +28,7 @@ toggleButton.addEventListener('click', function () {
 });
 
 async function changeLesson(lessonId) {
-	const sourceLesson = 'http://127.0.0.1:8000/lessons/' + lessonId + '/';
+	const sourceLesson = 'http://192.168.56.10:8080/lessons/' + lessonId + '/';
 	let res = await fetch(sourceLesson);
     const lesson = await res.json();
 	lessonTitle.innerText = lesson.title;
@@ -43,7 +43,7 @@ async function changeLesson(lessonId) {
 	const testField = document.querySelector('.tests');
 	testField.innerText = '';
 	
-	res = await fetch('http://127.0.0.1:8000/tests/');
+	res = await fetch('http://192.168.56.10:8080/tests/');
 	const tests = await res.json();
 	tests.forEach(async function(item) {	
 		let optCount = '1';
@@ -57,9 +57,9 @@ async function changeLesson(lessonId) {
 			const testForm = document.createElement('form');
 			testField.appendChild(testForm);
 			
-			res = await fetch('http://127.0.0.1:8000/tasks/');
+			res = await fetch('http://192.168.56.10:8080/tasks/');
 			const tasks = await res.json();
-			const sourceTest = 'http://127.0.0.1:8000/tests/' + item.id + '/';
+			const sourceTest = 'http://192.168.56.10:8080/tests/' + item.id + '/';
 			tasks.forEach(async function(item) {
 				if (item.test == sourceTest) {
 					//Заголовок задания					
@@ -70,9 +70,9 @@ async function changeLesson(lessonId) {
 					const answersBlock = document.createElement('div');	
 					testForm.appendChild(answersBlock);
 	
-					res = await fetch('http://127.0.0.1:8000/answers/');
+					res = await fetch('http://192.168.56.10:8080/answers/');
 					const answers = await res.json();
-					const sourceTask = 'http://127.0.0.1:8000/tasks/' + item.id + '/';
+					const sourceTask = 'http://192.168.56.10:8080/tasks/' + item.id + '/';
 					
 					answers.forEach(function(item) {
 						if (item.task == sourceTask) {
@@ -97,7 +97,7 @@ async function changeLesson(lessonId) {
 };
 
 window.addEventListener('load', async function () {
-        const res = await fetch('http://127.0.0.1:8000/lessons/');
+        const res = await fetch('http://192.168.56.10:8080/lessons/');
         const lessonList = await res.json();
 		lessonList.sort(function(a, b) { return a.id - b.id;});
         lessonList.map((item) => {
