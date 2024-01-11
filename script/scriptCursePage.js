@@ -5,7 +5,7 @@ document.getElementById('toggleButton').addEventListener('click', function () {
     button.classList.toggle('hidden');
 });
 
-window.addEventListener('load', async function () {
+async function getCourse() {
 	let res = await fetch('http://127.0.0.1:8000/courses/' + localStorage.getItem('course'));
 	
 	const curCourse = await res.json();
@@ -13,30 +13,27 @@ window.addEventListener('load', async function () {
 	res = await fetch('http://127.0.0.1:8000/modules_for_course/' + curCourse.id + '/');
 	const courseModules = await res.json();
 	
-	let modulesArray = courseModules.map(async function(rawModule) {
+	let modulesArray = await Promise.all(courseModules.map(async function(rawModule) {
 		
 		res = await fetch('http://127.0.0.1:8000/lessons_for_module/' + rawModule.id + '/');
 		const moduleLessons = await res.json();
-		
-		let lessonsArray = moduleLessons.map(function(rawLesson) {
-			return rawLesson.title;
-		});
-		
-		return module = {
+		return {
+			id: rawModule.id,
 			name: rawModule.title,
-			lessons: lessonsArray
+			lessons: moduleLessons
 		};
-	});
-
-	console.log(modulesArray[0].lessons);
-	
-	let data = {
+	}));
+	 
+	return {
 		courseTitle: curCourse.title,
 		courseId: curCourse.id,
 		courseDesc: curCourse.course_description,
 		modules: modulesArray
 	};
-	
+}
+
+window.addEventListener('load', async function () {
+	let data = await getCourse();
     // Вставляем название курса и его описание в блок класса 'content'
 	let content = document.querySelector('.content');
 	content.querySelector('h1').textContent = data.courseTitle;
@@ -62,8 +59,12 @@ window.addEventListener('load', async function () {
 		module.lessons.forEach((lesson) => {
 			let lessonBox = document.createElement('a');
 			lessonBox.className = 'lesson-box';
-			lessonBox.textContent = lesson;
+			lessonBox.textContent = lesson.title;
 			lessonBox.href="course_menu.html";
+			lessonBox.addEventListener('click', function() {
+			localStorage.setItem('lesson', lesson.id);
+			localStorage.setItem('module', module.id);
+			});
 			containerItem.appendChild(lessonBox);
 		});
 

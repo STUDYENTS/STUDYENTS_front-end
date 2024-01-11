@@ -1,4 +1,3 @@
-let lessonsList = document.getElementById('lessons');
 let toggleButton = document.getElementById('toggle-button');
 let lessonsBar = document.querySelector('.lessons-bar');
 let mainContent = document.querySelector('.main-content');
@@ -37,7 +36,6 @@ async function changeLesson(lessonId) {
 	video.src = lesson.video;
 	
 	const file = document.querySelector('.additional-text');
-	console.log(file);
 	file.innerHTML = `<p>Дополнительная информация о текущем уроке или задания для студентов.</p><p>${lesson.theory}</p><a href=${lesson.file} target="_blank"><button>Скачать</button></a>`;
 
 	const testField = document.querySelector('.tests');
@@ -97,21 +95,26 @@ async function changeLesson(lessonId) {
 };
 
 window.addEventListener('load', async function () {
-        const res = await fetch('http://127.0.0.1:8000/lessons/');
+        let res = await fetch('http://127.0.0.1:8000/lessons_for_module/' + localStorage.getItem('module') + '/');
         const lessonList = await res.json();
+		res = await fetch('http://127.0.0.1:8000/modules/' + localStorage.getItem('module') + '/');
+		const module = await res.json();
+
 		lessonList.sort(function(a, b) { return a.id - b.id;});
+		var h3 = document.createElement('h3');
+		lessonsBar.appendChild(h3);
+		h3.innerHTML = module.title;
+		var newList = document.createElement('ul');
+		lessonsBar.appendChild(newList);
         lessonList.map((item) => {
             var newListItem = document.createElement('li');
             var newListItemA = document.createElement('div');
 			newListItemA.id = item.id;
 			newListItemA.setAttribute('onclick', 'changeLesson(' + item.id + ')');
-            var newListItemA = document.createElement('div');
-			newListItemA.id = item.id;
-			newListItemA.setAttribute('onclick', 'changeLesson(' + item.id + ')');
             newListItemA.textContent = item.title;
             newListItem.appendChild(newListItemA);
-            lessonsList.appendChild(newListItem);
+            newList.appendChild(newListItem);
         })		
 		
-		changeLesson(lessonList[0].id);
+		changeLesson(localStorage.getItem('lesson'));
 })
