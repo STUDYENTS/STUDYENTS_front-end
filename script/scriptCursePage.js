@@ -5,82 +5,71 @@ document.getElementById('toggleButton').addEventListener('click', function () {
     button.classList.toggle('hidden');
 });
 
-// Предположим, что у вас есть следующий объект данных с сервера
-let data = {
-    courseTitle: "Курс по Web-программированию для начинающих ",
-    courseDescription: "Прекрасный текст с описанием курса да да я сама креативность",
-    modules: [
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3", "Урок 3", "Урок 3", "Урок 3", "Урок 3", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-        {
-            moduleName: "Название модуля",
-            lessons: ["Урок 1", "Урок 2", "Урок 3"]
-        },
-    ]
+window.addEventListener('load', async function () {
+	let res = await fetch('http://127.0.0.1:8000/courses/' + localStorage.getItem('course'));
+	
+	const curCourse = await res.json();
+	
+	res = await fetch('http://127.0.0.1:8000/modules_for_course/' + curCourse.id + '/');
+	const courseModules = await res.json();
+	
+	let modulesArray = courseModules.map(async function(rawModule) {
+		
+		res = await fetch('http://127.0.0.1:8000/lessons_for_module/' + rawModule.id + '/');
+		const moduleLessons = await res.json();
+		
+		let lessonsArray = moduleLessons.map(function(rawLesson) {
+			return rawLesson.title;
+		});
+		
+		return module = {
+			name: rawModule.title,
+			lessons: lessonsArray
+		};
+	});
 
+	console.log(modulesArray[0].lessons);
+	
+	let data = {
+		courseTitle: curCourse.title,
+		courseId: curCourse.id,
+		courseDesc: curCourse.course_description,
+		modules: modulesArray
+	};
+	
+    // Вставляем название курса и его описание в блок класса 'content'
+	let content = document.querySelector('.content');
+	content.querySelector('h1').textContent = data.courseTitle;
+	content.querySelector('p').textContent = data.courseDesc;
 
-};
+	// Вставляем модули и уроки в блок класса 'container'
+	let container = document.querySelector('.container');	
+	
+	// Очищаем контейнер
+	container.innerHTML = '';
 
-// Вставляем название курса и его описание в блок класса 'content'
-let content = document.querySelector('.content');
-content.querySelector('h1').textContent = data.courseTitle;
-content.querySelector('p').textContent = data.courseDescription;
+	data.modules.forEach((module) => {
+		// Создаем новый элемент 'container-item'
+		let containerItem = document.createElement('div');
+		containerItem.className = 'container-item';
 
-// Вставляем модули и уроки в блок класса 'container'
-let container = document.querySelector('.container');
+		// Добавляем название модуля
+		let h3 = document.createElement('h3');
+		h3.textContent = module.name;
+		containerItem.appendChild(h3);
 
-// Очищаем контейнер
-container.innerHTML = '';
+		// Добавляем уроки
+		module.lessons.forEach((lesson) => {
+			let lessonBox = document.createElement('a');
+			lessonBox.className = 'lesson-box';
+			lessonBox.textContent = lesson;
+			lessonBox.href="course_menu.html";
+			containerItem.appendChild(lessonBox);
+		});
 
-data.modules.forEach(module => {
-    // Создаем новый элемент 'container-item'
-    let containerItem = document.createElement('div');
-    containerItem.className = 'container-item';
+		// Добавляем 'container-item' в 'container'
+		container.appendChild(containerItem);
+	})
+})
 
-    // Добавляем название модуля
-    let h3 = document.createElement('h3');
-    h3.textContent = module.moduleName;
-    containerItem.appendChild(h3);
-
-    // Добавляем уроки
-    module.lessons.forEach(lesson => {
-        let lessonBox = document.createElement('a');
-        lessonBox.className = 'lesson-box';
-        lessonBox.textContent = lesson;
-        lessonBox.href="course_menu.html"
-        containerItem.appendChild(lessonBox);
-    });
-
-    // Добавляем 'container-item' в 'container'
-    container.appendChild(containerItem);
-});
+	

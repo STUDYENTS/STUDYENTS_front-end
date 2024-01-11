@@ -1,18 +1,3 @@
-var data = [
-  {
-    title: "Курс по Web-программированию для начинающих",
-    image: "image/curse_img.jpg",
-    tests: "10",
-    tasks: "20",
-    skillPer: "49"
-  }
-];
-
-let item = data[0];
-for (let i = 0; i < 20; i++) {
-  data.push(item);
-}
-
 async function GetCourse() {
     let dataCourse = [];
     const res = await fetch("http://127.0.0.1:8000/courses");
@@ -21,6 +6,7 @@ async function GetCourse() {
     // Use courseList directly, it's an array
     courseList.forEach((item) => {
         let course = {
+			id: item.id,
             title: item.title,
             image: item.img,
             tests: item.number_of_tests,
@@ -36,7 +22,7 @@ async function GetCourse() {
 // Функция для создания HTML-кода для элемента данных
 function createContentItem(data) {
   return `
-    <a class="content-item" href="CursePage.html" >
+    <a class="content-item" href="CursePage.html" onclick="localStorage.setItem('course', ${data.id})">
       <div>
         <img src="${data.image}">
         <h3>${data.title}</h3>
