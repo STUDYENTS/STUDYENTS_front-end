@@ -11,7 +11,7 @@ async function GetCourse() {
             image: item.img,
             tests: item.number_of_tests,
             tasks: item.number_of_lessons,
-            skillPer: (item.number_of_completed_tests / item.number_of_tests) * 100,
+            skillPer: ((item.number_of_completed_tests + item.number_of_completed_lessons) / (item.number_of_lessons + item.number_of_tests)) * 100,
         };
         dataCourse.push(course);
     });
@@ -29,13 +29,13 @@ function createContentItem(data) {
       </div>
       <div>
         <p class="test">Кол-во тестов: ${data.tests}</p>
-        <p class="task">Кол-во заданий: ${data.tasks}</p>
+        <p class="task">Кол-во уроков: ${data.tasks}</p>
       </div>
-      <div class="skill-main">
+        <div class="skill-main">
         <div class="skill-wrrap">
           <div class="skill-name"></div>
           <div class="skill-bar">
-            <div class="skill-per" per="${data.skillPer}"></div>
+            <div class="skill-per" per=${data.skillPer}></div>
           </div>
         </div>
       </div>

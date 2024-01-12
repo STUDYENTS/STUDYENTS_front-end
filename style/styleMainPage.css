@@ -127,7 +127,8 @@ body {
 .content-item {
     text-decoration: none;
     width: 45%;
-    height: 35vh;
+    min-height: 200px;
+
     padding: 20px;
     border: 3px solid #DEB887;
     box-sizing: border-box;
@@ -172,9 +173,6 @@ body {
 
 .skill-main {
     width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
 }
 
