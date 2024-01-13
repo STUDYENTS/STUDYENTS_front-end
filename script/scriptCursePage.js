@@ -64,6 +64,10 @@ window.addEventListener('load', async function () {
             lessonBox.className = 'lesson-box';
             lessonBox.textContent = lesson.title;
             lessonBox.href = "course_menu.html";
+			lessonBox.addEventListener('click', function() {
+			localStorage.setItem('lesson', lesson.id);
+			localStorage.setItem('module', module.id);
+			});
             containerItem.appendChild(lessonBox);
         });
 
